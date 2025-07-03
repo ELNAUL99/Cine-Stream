@@ -27,7 +27,7 @@ client = MongoClient(MONGO_URL)
 db = client.filming_website
 
 # TMDb API configuration
-TMDB_API_KEY = os.environ.get('TMDB_API_KEY')
+TMDB_API_KEY = os.environ.get('TMDB_API_KEY', '51ed980914e44c3876fa3cd1271216d1')
 TMDB_BASE_URL = "https://api.themoviedb.org/3"
 TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
