@@ -139,7 +139,7 @@ async def get_movie_details(movie_id: int):
                 data["backdrop_url"] = f"https://image.tmdb.org/t/p/w1280{data['backdrop_path']}"
             
             # Add VidSrc embed URL
-            data["vidsrc_embed_url"] = f"https://vidsrc.to/embed/movie/{movie_id}"
+            data["vidsrc_embed_url"] = f"https://vidsrc.me/embed/movie/{movie_id}"
             
             return data
     except httpx.HTTPStatusError as e:
@@ -246,7 +246,7 @@ async def get_tv_season_details(tv_id: int, season_number: int):
             
             # Add VidSrc embed URLs for episodes
             for episode in data.get("episodes", []):
-                episode["vidsrc_embed_url"] = f"https://vidsrc.to/embed/tv/{tv_id}/{season_number}/{episode['episode_number']}"
+                episode["vidsrc_embed_url"] = f"https://vidsrc.me/embed/tv/{tv_id}/{season_number}/{episode['episode_number']}"
             
             return data
     except httpx.HTTPStatusError as e:
