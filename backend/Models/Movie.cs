@@ -149,8 +149,8 @@ public class Episode
     public string Overview { get; set; } = "";
     public string StillPath { get; set; } = "";
     public int Runtime { get; set; }
-    public double Vote_Average { get; set; }
-    public string Vidsrc_Embed_Url { get; set; } = "";
+    public double VoteAverage { get; set; }
+    public string VidsrcEmbedUrl { get; set; } = "";
 }
 
 public class HealthResponse
