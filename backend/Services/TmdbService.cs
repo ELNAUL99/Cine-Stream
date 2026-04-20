@@ -85,7 +85,7 @@ public class TmdbService
             ?? throw new InvalidOperationException("Failed to deserialize movie details");
         
         AddImageUrls(movie);
-        movie.Vidsrc_Embed_Url = $"https://vidsrc.me/embed/movie/{movieId}";
+        movie.VidsrcEmbedUrl = $"https://vidsrc.me/embed/movie/{movieId}";
         
         return movie;
     }
@@ -130,7 +130,7 @@ public class TmdbService
             ?? throw new InvalidOperationException("Failed to deserialize TV show details");
         
         AddImageUrls(show);
-        show.Vidsrc_Embed_Url = $"https://vidsrc.to/embed/tv/{tvId}";
+        show.VidsrcEmbedUrl = $"https://vidsrc.to/embed/tv/{tvId}";
         
         return show;
     }
@@ -148,7 +148,7 @@ public class TmdbService
         // Add VidSrc embed URLs for episodes
         foreach (var episode in season.Episodes)
         {
-            episode.Vidsrc_Embed_Url = $"https://vidsrc.me/embed/tv/{tvId}/{seasonNumber}/{episode.Episode_Number}";
+            episode.VidsrcEmbedUrl = $"https://vidsrc.me/embed/tv/{tvId}/{seasonNumber}/{episode.EpisodeNumber}";
         }
         
         return season;
@@ -165,10 +165,10 @@ public class TmdbService
 
     private void AddImageUrls(Movie movie)
     {
-        if (!string.IsNullOrEmpty(movie.Poster_Path))
-            movie.Poster_Url = $"{_imageBaseUrl}{movie.Poster_Path}";
-        if (!string.IsNullOrEmpty(movie.Backdrop_Path))
-            movie.Backdrop_Url = $"{_backdropBaseUrl}{movie.Backdrop_Path}";
+        if (!string.IsNullOrEmpty(movie.PosterPath))
+            movie.PosterUrl = $"{_imageBaseUrl}{movie.PosterPath}";
+        if (!string.IsNullOrEmpty(movie.BackdropPath))
+            movie.BackdropUrl = $"{_backdropBaseUrl}{movie.BackdropPath}";
     }
 
     private void AddImageUrls(List<TvShow> shows)
@@ -181,17 +181,17 @@ public class TmdbService
 
     private void AddImageUrls(TvShow show)
     {
-        if (!string.IsNullOrEmpty(show.Poster_Path))
-            show.Poster_Url = $"{_imageBaseUrl}{show.Poster_Path}";
-        if (!string.IsNullOrEmpty(show.Backdrop_Path))
-            show.Backdrop_Url = $"{_backdropBaseUrl}{show.Backdrop_Path}";
+        if (!string.IsNullOrEmpty(show.PosterPath))
+            show.PosterUrl = $"{_imageBaseUrl}{show.PosterPath}";
+        if (!string.IsNullOrEmpty(show.BackdropPath))
+            show.BackdropUrl = $"{_backdropBaseUrl}{show.BackdropPath}";
     }
 
     private void AddImageUrls(TvShowDetails show)
     {
-        if (!string.IsNullOrEmpty(show.Poster_Path))
-            show.Poster_Url = $"{_imageBaseUrl}{show.Poster_Path}";
-        if (!string.IsNullOrEmpty(show.Backdrop_Path))
-            show.Backdrop_Url = $"{_backdropBaseUrl}{show.Backdrop_Path}";
+        if (!string.IsNullOrEmpty(show.PosterPath))
+            show.PosterUrl = $"{_imageBaseUrl}{show.PosterPath}";
+        if (!string.IsNullOrEmpty(show.BackdropPath))
+            show.BackdropUrl = $"{_backdropBaseUrl}{show.BackdropPath}";
     }
 }

@@ -5,44 +5,44 @@ interface Movie {
   id: number;
   title: string;
   overview: string;
-  poster_path: string;
-  poster_url: string;
-  backdrop_path: string;
-  backdrop_url: string;
-  release_date: string;
-  vote_average: number;
-  genre_ids: number[];
+  posterPath: string;
+  posterUrl: string;
+  backdropPath: string;
+  backdropUrl: string;
+  releaseDate: string;
+  voteAverage: number;
+  genreIds: number[];
 }
 
 interface TVShow {
   id: number;
   name: string;
   overview: string;
-  poster_path: string;
-  poster_url: string;
-  backdrop_path: string;
-  backdrop_url: string;
-  first_air_date: string;
-  vote_average: number;
-  genre_ids: number[];
+  posterPath: string;
+  posterUrl: string;
+  backdropPath: string;
+  backdropUrl: string;
+  firstAirDate: string;
+  voteAverage: number;
+  genreIds: number[];
 }
 
 interface MovieDetails extends Movie {
   runtime: number;
   genres: { id: number; name: string }[];
-  vidsrc_embed_url: string;
+  vidsrcEmbedUrl: string;
   credits: {
-    cast: { id: number; name: string; character: string; profile_path: string }[];
+    cast: { id: number; name: string; character: string; profilePath: string }[];
   };
 }
 
 interface TVDetails extends TVShow {
-  number_of_seasons: number;
-  number_of_episodes: number;
+  numberOfSeasons: number;
+  numberOfEpisodes: number;
   genres: { id: number; name: string }[];
-  vidsrc_embed_url: string;
+  vidsrcEmbedUrl: string;
   credits: {
-    cast: { id: number; name: string; character: string; profile_path: string }[];
+    cast: { id: number; name: string; character: string; profilePath: string }[];
   };
 }
 
@@ -127,17 +127,17 @@ const App: React.FC = () => {
     >
       <div className="relative">
         <img 
-          src={movie.poster_url || '/api/placeholder/300/450'} 
+          src={movie.posterUrl || '/api/placeholder/300/450'} 
           alt={movie.title}
           className="w-full h-64 object-cover"
         />
         <div className="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded-full text-sm font-bold">
-          {(movie.vote_average ?? 0).toFixed(1)}
+          {(movie.voteAverage ?? 0).toFixed(1)}
         </div>
       </div>
       <div className="p-4">
         <h3 className="text-white font-semibold text-lg mb-2 truncate">{movie.title}</h3>
-        <p className="text-gray-300 text-sm mb-2">{movie.release_date}</p>
+        <p className="text-gray-300 text-sm mb-2">{movie.releaseDate}</p>
         <p className="text-gray-400 text-sm line-clamp-2">{movie.overview}</p>
       </div>
     </div>
@@ -150,17 +150,17 @@ const App: React.FC = () => {
     >
       <div className="relative">
         <img 
-          src={show.poster_url || '/api/placeholder/300/450'} 
+          src={show.posterUrl || '/api/placeholder/300/450'} 
           alt={show.name}
           className="w-full h-64 object-cover"
         />
         <div className="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded-full text-sm font-bold">
-          {(show.vote_average ?? 0).toFixed(1)}
+          {(show.voteAverage ?? 0).toFixed(1)}
         </div>
       </div>
       <div className="p-4">
         <h3 className="text-white font-semibold text-lg mb-2 truncate">{show.name}</h3>
-        <p className="text-gray-300 text-sm mb-2">{show.first_air_date}</p>
+        <p className="text-gray-300 text-sm mb-2">{show.firstAirDate}</p>
         <p className="text-gray-400 text-sm line-clamp-2">{show.overview}</p>
       </div>
     </div>
@@ -337,7 +337,7 @@ const App: React.FC = () => {
 
     const isMovie = 'title' in selectedItem;
     const title = isMovie ? selectedItem.title : selectedItem.name;
-    const releaseDate = isMovie ? selectedItem.release_date : selectedItem.first_air_date;
+    const releaseDate = isMovie ? selectedItem.releaseDate : selectedItem.firstAirDate;
 
     return (
       <div className="space-y-6">
@@ -345,14 +345,14 @@ const App: React.FC = () => {
         <div 
           className="relative bg-cover bg-center rounded-lg overflow-hidden"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${selectedItem.backdrop_url || selectedItem.poster_url})`,
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${selectedItem.backdropUrl || selectedItem.posterUrl})`,
             minHeight: '400px'
           }}
         >
           <div className="absolute inset-0 flex items-center p-8">
             <div className="flex flex-col md:flex-row gap-6 w-full">
               <img
-                src={selectedItem.poster_url || '/api/placeholder/300/450'}
+                src={selectedItem.posterUrl || '/api/placeholder/300/450'}
                 alt={title}
                 className="w-64 h-96 object-cover rounded-lg shadow-2xl"
               />
@@ -360,7 +360,7 @@ const App: React.FC = () => {
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
                 <div className="flex items-center gap-4 mb-4">
                   <span className="bg-yellow-500 text-black px-3 py-1 rounded-full font-bold">
-                    {selectedItem.vote_average.toFixed(1)}
+                    {(selectedItem.voteAverage ?? 0).toFixed(1)}
                   </span>
                   <span className="text-gray-300">{releaseDate}</span>
                   {isMovie && (
@@ -397,7 +397,7 @@ const App: React.FC = () => {
         {/* Video Player */}
         <div id="player-section" className="bg-gray-800 rounded-lg p-6">
           <h2 className="text-2xl font-bold text-white mb-4">Watch {title}</h2>
-          <VideoPlayer embedUrl={selectedItem.vidsrc_embed_url} />
+          <VideoPlayer embedUrl={selectedItem.vidsrcEmbedUrl} />
         </div>
 
         {/* Cast */}
@@ -408,7 +408,7 @@ const App: React.FC = () => {
               {selectedItem.credits.cast.slice(0, 12).map((actor) => (
                 <div key={actor.id} className="text-center">
                   <img
-                    src={actor.profile_path ? `https://image.tmdb.org/t/p/w185${actor.profile_path}` : '/api/placeholder/100/150'}
+                    src={actor.profilePath ? `https://image.tmdb.org/t/p/w185${actor.profilePath}` : '/api/placeholder/100/150'}
                     alt={actor.name}
                     className="w-full h-32 object-cover rounded-lg mb-2"
                   />
