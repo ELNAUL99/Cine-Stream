@@ -126,7 +126,7 @@ public class Season
     public string Name { get; set; } = "";
     public string Overview { get; set; } = "";
     public string Poster_Path { get; set; } = "";
-    public int Season_Number { get; set; };
+    public int Season_Number { get; set; }
 }
 
 public class SeasonDetails
@@ -137,7 +137,7 @@ public class SeasonDetails
     public string Overview { get; set; } = "";
     public int Id { get; set; }
     public string Poster_Path { get; set; } = "";
-    public int Season_Number { get; set; };
+    public int Season_Number { get; set; }
 }
 
 public class Episode
