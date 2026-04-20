@@ -44,7 +44,7 @@ public class TvShow
     public List<string> Origin_Country { get; set; } = new();
     public string Original_Language { get; set; } = "";
     public string Original_Name { get; set; } = "";
-    public double Popularity { get; set; };
+    public double Popularity { get; set; }
 
     public string Poster_Url { get; set; } = "";
     public string Backdrop_Url { get; set; } = "";
