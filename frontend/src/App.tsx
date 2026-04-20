@@ -132,7 +132,7 @@ const App: React.FC = () => {
           className="w-full h-64 object-cover"
         />
         <div className="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded-full text-sm font-bold">
-          {movie.vote_average.toFixed(1)}
+          {(movie.vote_average ?? 0).toFixed(1)}
         </div>
       </div>
       <div className="p-4">
@@ -155,7 +155,7 @@ const App: React.FC = () => {
           className="w-full h-64 object-cover"
         />
         <div className="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded-full text-sm font-bold">
-          {show.vote_average.toFixed(1)}
+          {(show.vote_average ?? 0).toFixed(1)}
         </div>
       </div>
       <div className="p-4">
